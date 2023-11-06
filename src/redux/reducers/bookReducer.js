@@ -7,21 +7,28 @@ const initialState = {
 const bookReducer = (state = initialState , action)=>{
     switch (action.type) {
         case ADD_BOOK:
-            return {
+            state = {
                 ...state,
-                books : [...state.books , action.payload]
+                books : [...state.books , action.payload],
             }
-            case REMOVE_BOOK:
+            localStorage.setItem("booksData" , JSON.stringify([...state.books]))
+            return state;
 
-                return {
+        case REMOVE_BOOK:
+                state = {
                     ...state,
-                    books :  state.books.filter(book => book.id !== action.payload)
+                    books : state.books.filter(book => book.id !== action.payload)
                 }
-            case REMOVE_ALL :
+                localStorage.setItem("booksData" , JSON.stringify([...state.books]))
+                return state
+
+        case REMOVE_ALL :
+            
                 return {
                     ...state,
                     books : []
                 };
+
         default:
             return state
     }

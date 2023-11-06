@@ -16,7 +16,7 @@ export const remove_book = (id)=>{
 
 export const remove_all = ()=> {
     return {
-        type : REMOVE_ALL,
+        type : REMOVE_ALL
     }
 }
 

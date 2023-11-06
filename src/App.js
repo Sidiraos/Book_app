@@ -8,6 +8,7 @@ import './App.css';
 import { Routes ,Route } from 'react-router-dom';
 import Search  from './components/Search';
 import Results from './components/Results';
+import Footer from './components/Footer';
 function App() {
   return (
     <Provider store={store}>
@@ -21,6 +22,7 @@ function App() {
           </Route>
           <Route path='/shelves' element={<Section/>} />
         </Routes>
+      <Footer />
     </Provider>
   );
 }

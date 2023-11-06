@@ -1,24 +1,22 @@
-import React , {useEffect} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { add_book } from '../redux/actions/bookAction/bookAction';
 import firstLetterUppercase from '../globalFunction/firstLetterUppercase';
 import { toast , ToastContainer } from 'react-toastify';
-  import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Results = ({googleBookAPI , dispatchBook , bookState}) => {
     // console.log(googleBookAPI)
     // console.log(googleBookAPI.data)
-    useEffect(()=>{
-        localStorage.setItem("booksData" , JSON.stringify([...bookState]))
-    } , [bookState])
     const addBook = (bookData)=>{
         const book = {
             id : bookData.id,
             title : firstLetterUppercase(bookData.volumeInfo.title),
             author : firstLetterUppercase(bookData.volumeInfo.authors && bookData.volumeInfo.authors.join(', '))
         }
+
         if(bookState.find(bookState => bookState.id === book.id)){
             toast.error(`📕 ${bookData.volumeInfo.title} already exists!`, {
                 position: "bottom-right",
@@ -30,7 +28,9 @@ const Results = ({googleBookAPI , dispatchBook , bookState}) => {
                 progress: undefined,
                 theme: "dark",
                 });
-        }else{
+        }
+        else
+        {
             dispatchBook(book)
             toast.info(`📕 ${bookData.volumeInfo.title} added!`, {
                 position: "bottom-right",
@@ -47,24 +47,24 @@ const Results = ({googleBookAPI , dispatchBook , bookState}) => {
 
 
 
-    const showLoadingOrData = googleBookAPI.loading  ?
+    const showLoadingOrData = googleBookAPI.loading ?
     (
-        <div className="spinner-border text-primary mt-5" role="status">
+        <div className="spinner-border text-primary mt-5" role="status" style={{width: '5rem', height: '5rem'}}>
             <span>Loading...</span>
         </div>
-    ) : 
+    ) :
     
     (
-        googleBookAPI.error ? 
+        googleBookAPI.error ?
 
         (
-            <div class="alert alert-danger" role="alert">
+            <div className="alert alert-danger mt-5" role="alert">
                 {
                     googleBookAPI.error
-                }   
+                }
             </div>
-        ) : 
-        
+        ) :
+
         (
             <div className="accordion accordion-flush" id="accordionFlushExample">
             {
@@ -78,7 +78,6 @@ const Results = ({googleBookAPI , dispatchBook , bookState}) => {
 
                             <div id={`flush-collapse${book.id}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" onClick={(e)=>{e.stopPropagation()}}>
                                     <div className="accordion-body d-flex flex-column gap-3">
-                                        
                                         {
                                             book.volumeInfo.imageLinks && <div className='book-image'><img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} className='w-100' /></div> 
                                         }
@@ -99,16 +98,15 @@ const Results = ({googleBookAPI , dispatchBook , bookState}) => {
         </div>
         )
     )
-        
-    
+
   return (
-    <section className='container mt-3 mb-3 text-center'>
+    <section className='container mt-5 mb-5 text-center results'>
         {
             showLoadingOrData
         }
         <ToastContainer />
     </section>
- 
+
   )
 }
 
@@ -119,7 +117,7 @@ const mapStateToProps = (state) => {
       bookState : state.book.books,
       googleBookAPI : state.googleBookApi
     }
-    
+
   }
 
   const mapDispatchToProps = (dispatch)=>{

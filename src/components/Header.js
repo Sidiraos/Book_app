@@ -18,7 +18,6 @@ const Header = (props) => {
       title : firstLetterUppercase(title),
       author : firstLetterUppercase(author)
     }
-    localStorage.setItem("booksData" , JSON.stringify([...props.book , book]))
     props.dispatchBook(book);
     toast.info(`📕 ${book.title} added!`, {
       position: "top-right",
