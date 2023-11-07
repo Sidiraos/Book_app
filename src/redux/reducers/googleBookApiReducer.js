@@ -24,6 +24,7 @@ const googleBookApiReducer = (state = initialStateGoogleAPI , action)=>{
             return {
                 ...state,
                 error : action.payload ,
+                data : [] ,
                 loading : false
             }
         default:

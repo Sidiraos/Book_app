@@ -25,7 +25,7 @@ export const load_book_api = (searchValue)=>{
     return dispatch => {
         // is_pending
         dispatch(load_book());
-        fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchValue}`)
+        fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchValue}&maxResults=40`)
         .then(response => response.json())
         .then(data => dispatch(load_book_success(data.items))) //success
         .catch(error => dispatch(load_book_failure(error.message))) //failure

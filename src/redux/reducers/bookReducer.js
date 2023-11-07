@@ -1,7 +1,7 @@
 import { ADD_BOOK  , REMOVE_BOOK , REMOVE_ALL} from "../actions/types";
 
 const initialState = {
-    books : JSON.parse(localStorage.getItem("booksData")) || []
+    books : JSON.parse(localStorage.getItem("booksData")) ? JSON.parse(localStorage.getItem("booksData")) : []
 }
 
 const bookReducer = (state = initialState , action)=>{
@@ -9,8 +9,9 @@ const bookReducer = (state = initialState , action)=>{
         case ADD_BOOK:
             state = {
                 ...state,
-                books : [...state.books , action.payload],
+                books : [...state.books , action.payload].reverse(),
             }
+            console.log('bookState',state)
             localStorage.setItem("booksData" , JSON.stringify([...state.books]))
             return state;
 
@@ -23,11 +24,13 @@ const bookReducer = (state = initialState , action)=>{
                 return state
 
         case REMOVE_ALL :
-            
-                return {
+                state = {
                     ...state,
                     books : []
-                };
+                }
+
+                localStorage.setItem("booksData" , JSON.stringify(state.books));
+                return state;
 
         default:
             return state

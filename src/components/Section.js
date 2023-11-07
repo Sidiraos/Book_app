@@ -5,13 +5,12 @@ import FlipMove from 'react-flip-move';
 
 
 const Section = ({book , removeBook , removeAll}) => {
-  console.log("section : ", book)
+  // console.log("section : ", book)
   const handleRemove = (id)=>{
     removeBook(id)
   }
 
   const handleRemoveAll = ()=> {
-    localStorage.setItem("booksData" , JSON.stringify([]));
     removeAll();
   }
 
@@ -37,7 +36,7 @@ const Section = ({book , removeBook , removeAll}) => {
                       </div>
   
                       <div className='col-12 col-sm-4 d-sm-flex justify-content-sm-end'>
-                        <button className="btn btn-warning delete-btn" onClick={()=>handleRemove(book.id)}>X</button>
+                        <button className="btn btn-warning delete-btn" onClick={()=>handleRemove(book.id)}>x</button>
                       </div>
                   </div>
                 )
