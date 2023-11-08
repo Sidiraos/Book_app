@@ -14,13 +14,13 @@ function App() {
     <Provider store={store}>
       <Nav />
         <Routes>
-          <Route path='/' element={<Header />}>
+          <Route path='/Book_app' element={<Header />}>
             <Route index element={<Section />} />
           </Route>
-          <Route path='/search' element={<Search/>}>
+          <Route path='/Book_app/search' element={<Search/>}>
             <Route index element={<Results />} />
           </Route>
-          <Route path='/shelves' element={<Section/>} />
+          <Route path='/Book_app/shelves' element={<Section/>} />
         </Routes>
       <Footer />
     </Provider>

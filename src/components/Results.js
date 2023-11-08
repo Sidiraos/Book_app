@@ -5,7 +5,6 @@ import { add_book } from '../redux/actions/bookAction/bookAction';
 import firstLetterUppercase from '../globalFunction/firstLetterUppercase';
 import { toast , ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import FlipMove from 'react-flip-move';
 
 
 const Results = ({googleBookAPI , dispatchBook , bookState}) => {

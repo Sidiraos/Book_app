@@ -6,7 +6,7 @@ const Nav = () => {
 	return (
 		<nav className="navbar navbar-expand bg-body-tertiary">
 			<div className="container-fluid">
-				<Link className="navbar-brand logo" to="/">
+				<Link className="navbar-brand logo" to="/Book_app">
 					<img src={logo} alt="logo of a book" />
 				</Link>
 				<div
@@ -17,14 +17,14 @@ const Nav = () => {
 						<NavLink
 							className="nav-link"
 							aria-current="page"
-							to="/"
+							to="/Book_app"
 						>
 							Home
 						</NavLink>
-						<NavLink className="nav-link" to="/search">
+						<NavLink className="nav-link" to="/Book_app/search">
 							Search
 						</NavLink>
-						<NavLink className="nav-link" to="/shelves">
+						<NavLink className="nav-link" to="/Book_app/shelves">
 							Shelves
 						</NavLink>
 					</div>
